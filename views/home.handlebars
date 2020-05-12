@@ -1,0 +1,17 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+{{#if filter}}
+	<h1>Accounts between the ages {{filter}}</h1>
+{{else if country}}
+	<h2>This users are from {{country}}</h2>
+{{else if filters}}
+	<h2>All profiles</h2>
+{{/if}}
+<input type="text" id="input" placeholder="Search">
+<ul id='users'>
+{{#each users}}
+	<li>User: <a href="/account/{{username}}">{{username}}</a>, age: {{age}}</li>
+{{else}}
+	</ul>
+	<h1><a href="/create">create your account now!</a> </h1>
+{{/each}}
+</ul>

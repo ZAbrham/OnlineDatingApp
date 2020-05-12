@@ -1,0 +1,39 @@
+{{#if again}}
+<h4>password must match with confirm password</h4>
+{{/if}}
+
+<article>
+
+  <form action="/create" method="POST">
+    <div class="">
+      <label> Username: </label>
+      <input id="username" type="text" name="username" size="20" placeholder="username">
+    </div>
+
+    <div class="input-field">
+      <label> Age:</label>
+      <input id="age" type="text" name="age" size="20" placeholder="age">
+    </div>
+
+    <div class="">
+      <label>Sex:</label>
+      <input id="sex" type="text" name="sex" size="20" placeholder="sex">
+    </div>
+
+    <div class="">
+      <label>Country:</label>
+      <input type="text" id="country" name="country"  size="20" placeholder="country">
+    </div>
+
+    <div class="">
+      <label>Hobbies:</label>
+      <input id="hobbies" type="text" name="hobbies" size="20" placeholder="hobbies separated by commas ">
+    </div>
+
+    <div class="">
+      <button type="submit" id="submit"> Submit</button>
+    </div>
+
+  </form>
+
+</article>

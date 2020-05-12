@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just a Page</title>
+  <link rel="stylesheet" type="text/css" href="/public/main.css">
+</head>
+<body>
+<div class="container">
+
+  {{>nav}}
+    {{{body}}}
+    <script src="/socket.io/socket.io.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#input').keyup(() => {
+          var input = $('#input').val();
+          input = input.trim();
+          $('li').each((i, ob) => {
+             if(!(ob.innerText.includes('User: ' + input))){
+               $(ob).hide( 'slow');
+             }else if(input === ''){
+               $(ob).show( 'slow');
+             }else{
+               $(ob).show( 'slow');
+             }
+          })
+        })
+
+        var socket = io();
+        $('#submit').submit( () => {
+          var username = $('#username').val();
+          var country = $('#country').val();
+          var age = $('#age').val();
+          var sex = $('#sex').val();
+          var hobbies = $('#hobbies').val();
+          $.ajax({
+            type: "POST",
+            url: '/movies',
+            data: {
+              username: username,
+              country: country,
+              age: age,
+              sex: sex,
+              hobbies: hobbies
+            },
+            successs: function(data, status) {
+              console.log(data);
+            }
+
+          })
+        });
+        socket.on('new user', (user)=> {
+          $('#users').append("<li>User: <a href=\"/account/" + user.username + "\">" + user.username + "</a>, age: " + user.age + "</li>");
+        })
+
+      });
+  </script>
+
+
+</div>
+</body>
+</html>
